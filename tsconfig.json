@@ -1,9 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": "./app",
-    "paths": {
-      "@renderer/*": ["renderer/*"]
-    },
     "target": "es5",
     "moduleResolution": "node",
     "module": "commonjs",
@@ -23,20 +19,14 @@
 
     "sourceMap": true,
 
-    "outDir": "dist"
+    "outDir": "dist",
+
+    "baseUrl": "./app",
+    "paths": {
+      "renderer/*": ["renderer/*"],
+      "main/*": ["main/*"],
+      "common/*": ["common/*"]
+    }
   },
-  // "files": ["app/index.tsx","app/TComp.tsx"],
-  // "include": [
-  //   "app/*.ts",
-  //   "app/*.tsx",
-  //   "app/**/*.ts",
-  //   "app/**/*.tsx",
-  //   "test/**/*.ts",
-  //   "test/**/*.tsx",
-  //   "node_modules/@types/**/*.d.ts"
-  // ],
-  "exclude": [
-    "dist",
-    "node_modules"
-  ]
+  "exclude": ["dist", "node_modules"]
 }
