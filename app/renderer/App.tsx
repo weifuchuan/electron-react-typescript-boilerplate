@@ -2,7 +2,9 @@ import * as React from "react";
 import {} from "mobx";
 import { observer, inject } from "mobx-react";
 import { Store } from "./store";
-import { Tree } from "antd";
+import { Tree, Button } from "antd";
+import { sendR } from "common/kit/renderer";
+import { TEST, TEST_RETURN } from "common/channel";
 const TreeNode = Tree.TreeNode;
 
 export interface IAppProps {
@@ -13,8 +15,9 @@ export interface IAppProps {
 @observer
 export default class App extends React.Component<IAppProps> {
   render() {
-    const fileTree = this.props.store ? this.props.store.fileTree : /* Impossible -> */ new Store().fileTree /* <- */;
-    console.log(JSON.stringify(fileTree));
+    const fileTree = this.props.store
+      ? this.props.store.fileTree
+      : /* Impossible -> */ new Store().fileTree /* <- */;
     return (
       <div className="full">
         <Tree showLine defaultExpandAll={true}>
@@ -38,6 +41,20 @@ export default class App extends React.Component<IAppProps> {
             })}
           </TreeNode>
         </Tree>
+        <Button
+          onClick={async () => {
+            const result = await sendR(
+              TEST,
+              TEST_RETURN,
+              "aaaa",
+              "bbbb",
+              "eeeee"
+            );
+            console.log(JSON.stringify(result));
+          }}
+        >
+          send
+        </Button>
       </div>
     );
   }

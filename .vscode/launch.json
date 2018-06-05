@@ -25,11 +25,26 @@
       "stopOnEntry": false,
       "preLaunchTask": "build-main-dev-ts-for-debugging"
     },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "启动程序",
-      "program": "${workspaceFolder}\\app\\"
-    }
+    // { // cross-env HOT=1  NODE_ENV=development webpack --config webpack.config.main.dev.js && electron ./app/main.js
+    //   "name": "DEV Debug",
+    //   "type": "node",
+    //   "request": "launch",
+    //   "cwd": "${workspaceRoot}",
+    //   "args": [],
+    //   "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+    //   "windows": {
+    //     "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
+    //   },
+    //   "runtimeArgs": ["./app/main.js"],
+    //   "env": {
+    //     "NODE_ENV": "development",
+    //     "HOT": "1"
+    //   },
+    //   "protocol": "inspector",
+    //   "sourceMaps": true,
+    //   "outFiles": [],
+    //   "stopOnEntry": false,
+    //   "preLaunchTask": "pre-debugging-dev"
+    // },
   ]
 }

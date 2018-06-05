@@ -9,6 +9,11 @@
       "script": "build-main-dev-ts-for-debugging",
       "problemMatcher": []
     },
-    
+    // {
+    //   "label": "pre-debugging-dev",
+    //   "type": "npm",
+    //   "script": "pre-debugging-dev",
+    //   "problemMatcher": []
+    // },
   ]
 }
