@@ -1,29 +1,29 @@
 import { observable } from "mobx";
 import { ipcRenderer } from "electron";
-import * as electron from "electron";
+import * as E from "electron";
 import {
   GET_ROOT_DIR,
-  GET_ROOT_DIR_RETURN,
-  IGetRootDirReturnMsg
+  
+  IGetRootDirReturnValue
 } from "common/channel";
-import { FileTree, DirNode, Node } from "common/types";
+import { FileTree, DirNode } from "common/types";
 
 export class Store {
   @observable fileTree: FileTree;
 
   constructor() {
-    ipcRenderer.once(
-      GET_ROOT_DIR_RETURN,
-      (event: electron.IpcMessageEvent, ft: IGetRootDirReturnMsg) => {
-        this.fileTree = observable(ft);
-      }
-    );
-    ipcRenderer.send(GET_ROOT_DIR);
+    const msg: IGetRootDirReturnValue = ipcRenderer.sendSync(GET_ROOT_DIR);
+    if (msg.err) {
+      console.error(msg.err); 
+      window.alert(msg.err);
+      E.remote.app.quit();
+    } else {
+      if (msg.fileTree) this.fileTree = observable(msg.fileTree);
+    }
   }
 
   async update(...dirs: string[]) {
     if (checkDirs(this.fileTree.root, dirs)) {
-      
     } else {
       throw "dirs is illlegal";
     }

@@ -12,7 +12,10 @@ import fs from 'fs';
 import webpack from 'webpack';
 import chalk from 'chalk';
 import merge from 'webpack-merge';
-import { spawn, execSync } from 'child_process';
+import {
+  spawn,
+  execSync
+} from 'child_process';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import baseConfig from './webpack.config.base';
 import CheckNodeEnv from './internals/scripts/CheckNodeEnv';
@@ -59,8 +62,7 @@ export default merge.smart(baseConfig, {
   },
 
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.tsx?$/,
         exclude: /node_modules/,
         loader: ['react-hot-loader/webpack', 'awesome-typescript-loader' /*'ts-loader'*/ ]
@@ -85,8 +87,7 @@ export default merge.smart(baseConfig, {
       },
       {
         test: /\.global\.css$/,
-        use: [
-          {
+        use: [{
             loader: 'style-loader'
           },
           {
@@ -99,8 +100,7 @@ export default merge.smart(baseConfig, {
       },
       {
         test: /^((?!\.global).)*\.css$/,
-        use: [
-          {
+        use: [{
             loader: 'style-loader'
           },
           {
@@ -114,8 +114,8 @@ export default merge.smart(baseConfig, {
           }
         ]
       },
-      
-      
+
+
       // WOFF Font
       {
         test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
@@ -174,13 +174,13 @@ export default merge.smart(baseConfig, {
   },
 
   plugins: [
-    requiredByDLLConfig
-      ? null
-      : new webpack.DllReferencePlugin({
-          context: process.cwd(),
-          manifest: require(manifest),
-          sourceType: 'var'
-        }),
+    requiredByDLLConfig ?
+    null :
+    new webpack.DllReferencePlugin({
+      context: process.cwd(),
+      manifest: require(manifest),
+      sourceType: 'var'
+    }),
 
     new webpack.HotModuleReplacementPlugin({
       multiStep: true
@@ -227,7 +227,9 @@ export default merge.smart(baseConfig, {
     inline: true,
     lazy: false,
     hot: true,
-    headers: { 'Access-Control-Allow-Origin': '*' },
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    },
     contentBase: path.join(__dirname, 'dist'),
     watchOptions: {
       aggregateTimeout: 300,
@@ -242,10 +244,10 @@ export default merge.smart(baseConfig, {
       if (process.env.START_HOT) {
         console.log('Starting Main Process...');
         spawn('npm', ['run', 'start-main-dev'], {
-          shell: true,
-          env: process.env,
-          stdio: 'inherit'
-        })
+            shell: true,
+            env: process.env,
+            stdio: 'inherit'
+          })
           .on('close', code => process.exit(code))
           .on('error', spawnError => console.error(spawnError));
       }

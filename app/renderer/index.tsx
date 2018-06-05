@@ -1,9 +1,9 @@
-import * as React from 'react'; 
-
-export default class App extends React.Component{
-    render(){
-        return (
-            <div>FUCK</div>
-        )
-    }
-}
+import * as React from "react";
+import App from "./App";
+import { Provider } from "mobx-react";
+import store from "./store";
+export default () => (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);

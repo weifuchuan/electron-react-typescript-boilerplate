@@ -3,8 +3,8 @@ export class Node {
 }
 
 export class DirNode extends Node {
-  dirs: Array<DirNode>;
-  files: Array<FileNode>;
+  dirs: Array<DirNode> = new Array<DirNode>();
+  files: Array<FileNode> = new Array<FileNode>();
   get size(): number {
     let s = 0;
     for (let fn of this.files) {

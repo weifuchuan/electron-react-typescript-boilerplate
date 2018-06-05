@@ -12,13 +12,13 @@ render(
 );
 
 if ((module as any).hot) {
-  (module as any).hot.accept('renderer/index', () => {
-    const NextRoot = require('renderer/index').default;
+  (module as any).hot.accept("renderer/index", () => {
+    const NextRoot = require("renderer/index").default;
     render(
       <AppContainer>
-        <NextRoot/>
+        <NextRoot />
       </AppContainer>,
-      document.getElementById('root')
+      document.getElementById("root")
     );
   });
 }
