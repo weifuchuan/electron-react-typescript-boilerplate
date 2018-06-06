@@ -71,7 +71,7 @@ app.on("ready", async () => {
   ) {
     mainWindow.webContents.openDevTools();
   }
-
+  
   mainWindow.on("closed", () => {
     mainWindow = null;
   });

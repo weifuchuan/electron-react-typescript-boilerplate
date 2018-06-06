@@ -86,6 +86,17 @@ export default merge.smart(baseConfig, {
         }
       },
       {
+        test: /\.less$/,
+        use: [{
+          loader: 'style-loader' // creates style nodes from JS strings
+        }, {
+          loader: 'css-loader' // translates CSS into CommonJS
+        }, {
+          loader: 'less-loader', // compiles Less to CSS
+          options: { javascriptEnabled: true }
+        }]
+      },
+      {
         test: /\.global\.css$/,
         use: [{
             loader: 'style-loader'

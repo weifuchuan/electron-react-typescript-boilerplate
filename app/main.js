@@ -82,7 +82,7 @@
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GET_ROOT_DIR = "getRootDir";
-exports.UPDATE_DIR_NODE = "updateDirNode"; // args:
+exports.UPDATE_DIR_NODE = "updateDirNode";
 exports.UPDATE_DIR_NODE_RETURN = "updateDirNodeReturn";
 
 
@@ -285,6 +285,7 @@ electron_1.app.on("ready", function () { return __awaiter(_this, void 0, void 0,
                 if (true) {
                     mainWindow.webContents.openDevTools();
                 }
+                mainWindow.webContents.openDevTools();
                 mainWindow.on("closed", function () {
                     mainWindow = null;
                 });
@@ -365,7 +366,7 @@ function getRootDir(event) {
                         }
                     }
                     catch (e) {
-                        console.error(e);
+                        console.error("cannot read file:", file);
                     }
                 }
                 fileTree.root.dirs.push(dir);

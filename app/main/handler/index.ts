@@ -57,7 +57,7 @@ export function getRootDir(event: E.IpcMessageEvent) {
               dir.files.push(f);
             }
           } catch (e) {
-            console.error(e);
+            console.error("cannot read file:",file);
           }
         }
         fileTree.root.dirs.push(dir);
