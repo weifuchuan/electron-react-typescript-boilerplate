@@ -13,6 +13,3 @@ export interface IGetRootDirReturnValue {
 
 export const UPDATE_DIR_NODE = "updateDirNode"; // args:
 export const UPDATE_DIR_NODE_RETURN = "updateDirNodeReturn";
-
-export const TEST = "test";
-export const TEST_RETURN = "testReturn";

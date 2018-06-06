@@ -34,7 +34,7 @@ if (
 export function getRootDir(event: E.IpcMessageEvent) {
   if (gotFileTree) {
     event.returnValue = { fileTree };
-    return; 
+    return;
   }
   gotFileTree = true;
   if (isWin) {
@@ -53,6 +53,7 @@ export function getRootDir(event: E.IpcMessageEvent) {
             } else if (stat.isFile()) {
               const f = new FileNode();
               f.name = file;
+              f.size = stat.size;
               dir.files.push(f);
             }
           } catch (e) {
@@ -91,5 +92,42 @@ export function getRootDir(event: E.IpcMessageEvent) {
         event.returnValue = { fileTree } as IGetRootDirReturnValue;
       }
     });
+  }
+}
+
+export function updateDir(dirs: string[]): DirNode {
+  let node: DirNode = fileTree.root;
+  let nextDirs: DirNode[] = node.dirs;
+  for (let i = 0; i < dirs.length-1; i++) {
+    if (dirs[i] === node.name) {
+      node =
+        nextDirs.find(d => d.name === dirs[i+1]) ||
+        /* impossible -> */ node /* <- */;
+      nextDirs = node.dirs;
+    }
+  }
+  try{
+    const thePath = isWin?path.join(...dirs.slice(1)):path.join(...dirs);
+    const files = fs.readdirSync(thePath);
+    for (let file of files) {
+      try {
+        const stat = fs.statSync(path.join(thePath, file));
+        if (stat.isDirectory()) {
+          const subdir = new DirNode();
+          subdir.name = file;
+          node.dirs.push(subdir);
+        } else if (stat.isFile()) {
+          const f = new FileNode();
+          f.name = file;
+          f.size = stat.size;
+          node.files.push(f);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    return node;
+  }catch(err){
+    throw err;
   }
 }

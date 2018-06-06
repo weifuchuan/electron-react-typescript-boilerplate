@@ -14,18 +14,13 @@ function idGenerator(name: string): string {
   return `${name}:${md5(Math.random().toString())}`;
 }
 
-function send(
-  sender: (channel: string, ...args: any[]) => void,
-  on: (
-    channel: string,
-    listener: (event: E.IpcMessageEvent, msg: IMsg) => void
-  ) => void,
+export function sendR(
   channel: string,
   returnChannel: string,
   ...args: any[]
 ): Promise<any[]> {
   if (!returnChannelRecord.has(returnChannel)) {
-    on(returnChannel, (event, msg) => {
+    E.ipcRenderer.on(returnChannel, (event: E.IpcMessageEvent, msg: IMsg) => {
       bus.emit(msg.id, msg.args);
     });
     returnChannelRecord.add(returnChannel);
@@ -36,20 +31,6 @@ function send(
   };
   return new Promise(resolve => {
     bus.once(msg.id, resolve);
-    sender(channel, msg);
+    E.ipcRenderer.send(channel, msg);
   });
-}
-
-export function sendR(
-  channel: string,
-  returnChannel: string,
-  ...args: any[]
-): Promise<any[]> {
-  return send(
-    E.ipcRenderer.send,
-    E.ipcRenderer.on,
-    channel,
-    returnChannel,
-    ...args
-  );
 }
