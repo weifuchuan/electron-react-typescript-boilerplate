@@ -11,5 +11,5 @@ export interface IGetRootDirReturnValue {
   err?: string;
 }
 
-export const UPDATE_DIR_NODE = "updateDirNode"; // args:
+export const UPDATE_DIR_NODE = "updateDirNode";
 export const UPDATE_DIR_NODE_RETURN = "updateDirNodeReturn";

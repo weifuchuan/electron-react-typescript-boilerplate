@@ -33,7 +33,20 @@ export default merge.smart(baseConfig, {
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        loader: ['react-hot-loader/webpack', 'awesome-typescript-loader' /*'ts-loader'*/ ]
+        loader: ['awesome-typescript-loader' /*'ts-loader'*/ ]
+      },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: [
+              'transform-class-properties',
+              'transform-es2015-classes'
+            ]
+          }
+        }
       },
       // Extract all .global.css to style.css as is
       {

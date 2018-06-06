@@ -7,6 +7,9 @@ import { sendR } from "common/kit/renderer";
 import { DirNode } from "common/types";
 import { AntTreeNode } from "antd/lib/tree";
 import { dirname } from "path";
+
+const Test: React.ReactType = require("./Test.jsx");
+
 const TreeNode = Tree.TreeNode;
 
 export interface IAppProps {
@@ -39,7 +42,11 @@ export default class App extends React.Component<IAppProps> implements IApp {
           showLine
           defaultExpandAll={true}
           onExpand={this.onExpand}
-          loadData={un => new Promise<void>((reject) => {reject()})}
+          loadData={un =>
+            new Promise<void>(reject => {
+              reject();
+            })
+          }
         >
           {this.makeTreeNode(fileTree.root, "")}
         </Tree>
@@ -59,6 +66,7 @@ export default class App extends React.Component<IAppProps> implements IApp {
             loading={this.selfState.loading}
           />
         </Affix>
+        <Test />
       </div>
     );
   }

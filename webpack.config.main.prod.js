@@ -5,7 +5,9 @@
 import webpack from 'webpack';
 import merge from 'webpack-merge';
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import {
+  BundleAnalyzerPlugin
+} from 'webpack-bundle-analyzer';
 import baseConfig from './webpack.config.base';
 import CheckNodeEnv from './internals/scripts/CheckNodeEnv';
 
@@ -25,6 +27,22 @@ export default merge.smart(baseConfig, {
     filename: './app/main.prod.js'
   },
 
+  module: {
+    rules: [{
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          plugins: [
+            'transform-class-properties',
+            'transform-es2015-classes'
+          ]
+        }
+      }
+    }]
+  },
+
   plugins: [
     new UglifyJSPlugin({
       parallel: true,
@@ -32,8 +50,7 @@ export default merge.smart(baseConfig, {
     }),
 
     new BundleAnalyzerPlugin({
-      analyzerMode:
-        process.env.OPEN_ANALYZER === 'true' ? 'server' : 'disabled',
+      analyzerMode: process.env.OPEN_ANALYZER === 'true' ? 'server' : 'disabled',
       openAnalyzer: process.env.OPEN_ANALYZER === 'true'
     }),
 
