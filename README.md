@@ -2,6 +2,8 @@
 
 ### A Boilerplate for Scalable Cross-Platform Desktop Apps
 
+### Electron + Typescript + Babel + React + Mobx + React Keeper + Antd
+
 
 ## Install
 
@@ -36,17 +38,7 @@ $ npm run start-main-dev
 
 ## Debugging
 
- It must be run the renderer and main processes separately. 
- 
- First, run npm run start-renderer-dev; config in vscode:
-
-```json
-
-{ "name": "Debug Main Process", "type": "node", "request": "launch", "cwd": "${workspaceRoot}", "args": [], "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron", "windows": { "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd" }, "runtimeArgs": [ "-r", "babel-register", "./app/main.dev.js" ], "env": { "NODE_ENV": "development", "HOT": "1" }, "protocol": "inspector", "sourceMaps": true, "outFiles": [], "stopOnEntry": false }
-
-```
-
-then you can debug main process in vscode.
+Open project with VSCode, debug use "Debug Main Process" for debug main process. 
 
 ## Packaging
 
