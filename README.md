@@ -121,5 +121,3 @@ If you want to import global css libraries (like `bootstrap`), you can just writ
 ## Less
 
 There is less support. 
-
-For antd, local font&icon has config. 
