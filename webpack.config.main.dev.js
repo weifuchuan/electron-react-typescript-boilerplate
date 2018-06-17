@@ -4,7 +4,13 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-
+const fs = require('fs');
+try {
+  fs.unlinkSync(path.join(__dirname, "app/main.js"));
+} catch (e) {}
+try {
+  fs.unlinkSync(path.join(__dirname, "app/main.js.map"));
+} catch (e) {}
 module.exports = {
   target: 'electron-main',
   entry: {
