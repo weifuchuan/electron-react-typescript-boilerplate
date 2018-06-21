@@ -6,7 +6,7 @@ function rmDir(filepath) {
     // Uncatch exception, if someone unaccessable, it should throw
     fs.accessSync(filepath);
     var stat = fs.statSync(filepath);
-    if (stat.isDirectory) {
+    if (stat.isDirectory()) {
         fs.readdirSync(filepath).forEach(function (file) {
             var filepath2 = path.join(filepath, file);
             fs.accessSync(filepath);
