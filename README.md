@@ -117,6 +117,14 @@ This boilerplate uses a [two package.json structure](https://github.com/electron
 1. `./package.json` in the root of your project
 1. `./app/package.json` inside `app` folder
 
+### Native dep
+
+On Windows? Want to compile native Node modules? Install the build tools with this one-liner. Start PowerShell as Administrator and run:
+
+```
+npm install --global --production windows-build-tools
+```
+
 ### Which `package.json` file to use
 
 **Rule of thumb** is: all modules go into `./package.json` except native modules. Native modules go into `./app/package.json`.
@@ -145,7 +153,3 @@ If you want to import global css libraries (like `bootstrap`), you can just writ
 ```css
 @import "~bootstrap/dist/css/bootstrap.css";
 ```
-
-## Less
-
-There is less support. 
