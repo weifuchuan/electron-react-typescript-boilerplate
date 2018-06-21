@@ -2,15 +2,15 @@
 exports.__esModule = true;
 var fs = require("fs");
 var path = require("path");
-function rmDir(filepath) {
+function rmDir(dir) {
     // Uncatch exception, if someone unaccessable, it should throw
-    fs.accessSync(filepath);
-    var stat = fs.statSync(filepath);
+    fs.accessSync(dir);
+    var stat = fs.statSync(dir);
     if (stat.isDirectory()) {
-        fs.readdirSync(filepath).forEach(function (file) {
-            var filepath2 = path.join(filepath, file);
-            fs.accessSync(filepath);
-            var stat = fs.statSync(filepath);
+        fs.readdirSync(dir).forEach(function (file) {
+            var filepath2 = path.join(dir, file);
+            fs.accessSync(filepath2);
+            var stat = fs.statSync(filepath2);
             if (stat.isDirectory()) {
                 rmDir(filepath2);
             }
@@ -18,7 +18,7 @@ function rmDir(filepath) {
                 fs.unlinkSync(filepath2);
             }
         });
-        fs.rmdirSync(filepath);
+        fs.rmdirSync(dir);
     }
     else {
         return;
