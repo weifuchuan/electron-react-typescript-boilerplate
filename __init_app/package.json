@@ -1,0 +1,17 @@
+{
+  "name": "electron-react-typescript-boilerplate",
+  "productName": "electron-react-typescript-boilerplate",
+  "version": "0.0.1",
+  "description": "Electron application",
+  "main": "./main.prod.js",
+  "author": {
+    "name": "weifuchuan",
+    "email": "fuchuan.wei@hotmail.com"
+  },
+  "scripts": {
+    "electron-rebuild": "node -r babel-register ../internals/scripts/ElectronRebuild.js",
+    "postinstall": "npm run electron-rebuild"
+  },
+  "license": "MIT",
+  "dependencies": {}
+}
