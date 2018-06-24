@@ -90,7 +90,17 @@
     "hot",
     "reload"
   ],
-  "jest": {},
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  },
   "devDependencies": {
     "@types/electron-devtools-installer": "^2.0.2",
     "@types/jest": "^23.1.1",
@@ -120,8 +130,8 @@
     "cross-spawn": "^6.0.5",
     "css-loader": "^0.28.11",
     "detect-port": "^1.2.3",
-    "electron": "^2.0.2",
-    "electron-builder": "^20.14.7",
+    "electron": "^2.0.3",
+    "electron-builder": "^20.15.1",
     "electron-devtools-installer": "^2.2.4",
     "electron-rebuild": "^1.7.3",
     "enzyme": "^3.3.0",
