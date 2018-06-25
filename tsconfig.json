@@ -8,12 +8,11 @@
     "types": [],
 
     "alwaysStrict": false,
-    "strictNullChecks": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
+    "strictNullChecks": false,
+    "noImplicitReturns": false,
+    "noImplicitThis": false,
     "noUnusedLocals": false,
-
+    "noImplicitAny": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
 
@@ -25,7 +24,8 @@
     "paths": {
       "renderer/*": ["renderer/*"],
       "main/*": ["main/*"],
-      "common/*": ["common/*"]
+      "common/*": ["common/*"],
+      "locales/*": ["locales/*"]
     }
   },
   "exclude": ["dist", "node_modules"]

@@ -2,22 +2,18 @@
  * Base webpack config used across other specific configs
  */
 
-import path from 'path';
-import webpack from 'webpack';
-import fs from 'fs';
-import {
-  dependencies as externals
-} from './app/package.json';
-import {
-  dependencies as possibleExternals
-} from './package.json';
+const path = require('path');
+const webpack = require('webpack');
+const fs = require('fs');
+const externals = require('./app/package.json').dependencies;
+const possibleExternals = require('./package.json').dependencies;
 const {
   CheckerPlugin
 } = require('awesome-typescript-loader');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 // Find all the dependencies without a `main` property and add them as webpack externals
-function filterDepWithoutEntryPoints(dep: string): boolean {
+function filterDepWithoutEntryPoints(dep) {
   // Return true if we want to add a dependency to externals
   try {
     // If the root of the dependency has an index.js, return true
@@ -36,7 +32,7 @@ function filterDepWithoutEntryPoints(dep: string): boolean {
   }
 }
 
-export default {
+module.exports = {
   externals: [
     ...Object.keys(externals || {}),
     ...Object.keys(possibleExternals || {}).filter(filterDepWithoutEntryPoints)
@@ -57,7 +53,7 @@ export default {
         test: /\.tsx?$/,
         include: [path.resolve(__dirname, 'app')],
         exclude: /node_modules/,
-        loader: ['react-hot-loader/webpack', 'awesome-typescript-loader' /*'ts-loader'*/ ]
+        loader: ['react-hot-loader/webpack', 'awesome-typescript-loader' ]
       }
     ]
   },
@@ -74,7 +70,9 @@ export default {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
     modules: [path.join(__dirname, 'app'), 'node_modules'],
-    plugins: [new TsconfigPathsPlugin({ configFile: "./tsconfig.json" })]
+    plugins: [new TsconfigPathsPlugin({
+      configFile: "./tsconfig.json"
+    })]
   },
 
   plugins: [
