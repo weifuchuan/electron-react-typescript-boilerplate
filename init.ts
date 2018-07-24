@@ -24,3 +24,5 @@ function rmDir(dir: string) {
 
 rmDir("app");
 fs.renameSync("__init_app", "app");
+fs.unlinkSync("./init.ts");
+fs.unlinkSync("./init.js");
