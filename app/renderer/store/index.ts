@@ -37,8 +37,7 @@ export class Store {
       for (let i = 0; i < dirs.length - 1; i++) {
         if (dirs[i] === node.name) {
           node =
-            nextDirs.find(d => d.name === dirs[i + 1]) ||
-            /* impossible -> */ node /* <- */;
+            nextDirs.find(d => d.name === dirs[i + 1])!;
           nextDirs = node.dirs;
         }
       }

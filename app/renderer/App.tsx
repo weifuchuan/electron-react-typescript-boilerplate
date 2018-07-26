@@ -32,10 +32,8 @@ export default class App extends React.Component<IAppProps> implements IApp {
   });
 
   render() {
-    const store = this.props.store || /* Impossible -> */ new Store() /* <- */;
-    const fileTree = this.props.store
-      ? this.props.store.fileTree
-      : /* Impossible -> */ new Store().fileTree /* <- */;
+    const store = this.props.store!;
+    const fileTree = store.fileTree;
     return (
       <div className="full">
         <Tree
@@ -74,7 +72,7 @@ export default class App extends React.Component<IAppProps> implements IApp {
   onExpand = async (expandedKeys: any, e: any) => {
     if (e.expanded as boolean) {
       const store =
-        this.props.store || /* Impossible -> */ new Store() /* <- */;
+        this.props.store!;
       const node: AntTreeNode = e.node;
       if ((node.props as any).eventKey) {
         const dirs: string[] = (node.props as any).eventKey.split("|");

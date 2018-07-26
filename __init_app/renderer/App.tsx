@@ -23,7 +23,7 @@ export default class App extends React.Component<IAppProps> implements IApp {
   });
 
   render() {
-    const store = this.props.store || /* Impossible -> */ new Store() /* <- */;
+    const store = this.props.store!;
     
     return (
       <div className="full">
