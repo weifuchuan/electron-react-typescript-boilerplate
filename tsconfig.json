@@ -4,19 +4,24 @@
     "moduleResolution": "node",
     "module": "commonjs",
     "jsx": "react",
-    "lib": ["dom", "es6", "dom.iterable", "scripthost"],
     "types": [],
 
-    "alwaysStrict": false,
-    "strictNullChecks": false,
-    "noImplicitReturns": false,
-    "noImplicitThis": false,
-    "noUnusedLocals": false,
-    "noImplicitAny": false,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-
+    "strict": true,
+    "checkJs": false,
+    "strictNullChecks": true,
     "sourceMap": true,
+    "experimentalDecorators": true,
+    "noEmitHelpers": true,
+    "importHelpers": true,
+    "downlevelIteration": true,
+    "alwaysStrict": true,
+    "lib": [
+      "es2015",
+      "dom",
+      "es6",
+      "es7",
+      "es5"
+    ],
 
     "outDir": "dist",
 
